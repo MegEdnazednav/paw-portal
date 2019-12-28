@@ -1,1 +1,1 @@
-import '../components/App'
+import '../react_frontend'
