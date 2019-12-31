@@ -1,7 +1,7 @@
 import { FETCH_ANIMALS_PENDING,
          FETCH_ANIMALS_SUCCESS,
          FETCH_ANIMALS_ERROR,
-         INCREMENT_LIKES } from '../actions/actionCreators';
+         INCREMENT_LIKES } from '../actions/fetchAnimalsActions';
 
 const initialState = {
   pending: false,
@@ -28,13 +28,6 @@ export function animals(state = initialState, action) {
         pending: false,
         error: action.error
       }
-    case INCREMENT_LIKES:
-    const i = action.index
-      return [
-        ...state.slice(0,i),
-        {...state[i], likes: state[i].likes + 1},
-        ...state.slice(i + 1)
-      ]
     default:
       return state;
   }

@@ -2,13 +2,12 @@ import React from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-//import * as actionCreators from '../redux/actions/actionCreators'
-import fetchAnimals from '../redux/actions/actionCreators'
+import fetchAnimals from '../redux/actions/fetchAnimalsActions'
 
 import AnimalList from './AnimalList'
 
 const mapStateToProps = state => {
-  return { animals: state.animals };
+  return { animals: state.animals.animals };
 }
 
 const mapDispatchToProps = dispatch => (
@@ -22,10 +21,9 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <div>
-          <AnimalList animals={this.props.animals.animals} />
+        <AnimalList animals={this.props.animals} />
       </div>
     )
   }

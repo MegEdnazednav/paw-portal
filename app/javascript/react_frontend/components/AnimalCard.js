@@ -6,7 +6,9 @@ class AnimalCard extends React.Component {
     const { animal, i } = this.props;
     return (
       <div>
-        {animal.name}
+        <Link to={`/animals/${animal.id}`}>
+          {animal.name}
+        </Link>
       </div>
     )
   }
