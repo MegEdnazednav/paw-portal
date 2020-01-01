@@ -4,15 +4,16 @@ import { reduxForm, Field } from 'redux-form';
 
 import createAnimal from '../redux/actions/createAnimalActions';
 
+import ImageUploader from './ImageUploader';
+
 class NewAnimal extends React.Component {
 
   onSubmit = (values) => {
     this.props.createAnimal(values, (new_animal) => {
-    this.props.history.push('/');
-    return new_animal;
+      this.props.history.push('/');
+      return new_animal;
     });
   }
-
 
   renderField(field) {
     return (
@@ -58,6 +59,10 @@ class NewAnimal extends React.Component {
             name="description"
             component="textarea"
             rows="8"
+          />
+          <ImageUploader
+            label="Photos"
+            name="photos"
           />
           <button className="btn btn-primary" type="submit" disabled={this.props.pristine || this.props.submitting}>
             Create Beast
