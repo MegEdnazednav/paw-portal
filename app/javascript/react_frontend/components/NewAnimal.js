@@ -10,7 +10,7 @@ class NewAnimal extends React.Component {
 
   onSubmit = (values) => {
     this.props.createAnimal(values, (new_animal) => {
-      this.props.history.push('/');
+      this.props.history.push('/'); //TODO Refactor
       return new_animal;
     });
   }

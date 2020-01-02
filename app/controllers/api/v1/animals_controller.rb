@@ -14,9 +14,20 @@ class Api::V1::AnimalsController < ApplicationController
     render json: @animal
   end
 
+  def update
+    @animal = Animal.create(animal_params)
+    render json: @animal
+  end
+
+  def destroy
+    @animal = Animal.find(animal_params[:id])
+    @animal.destroy
+    render json: {}, status: :ok
+  end
+
   private
 
   def animal_params
-    params.require(:animal).permit(:name, :age, :kind, :description)
+    params.require(:animal).permit(:id, :name, :age, :kind, :description)
   end
 end
