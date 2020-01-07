@@ -1,7 +1,6 @@
 export const FETCH_ANIMAL_PENDING = 'FETCH_ANIMAL_PENDING';
 export const FETCH_ANIMAL_SUCCESS = 'FETCH_ANIMAL_SUCCESS';
 export const FETCH_ANIMAL_ERROR   = 'FETCH_ANIMAL_ERROR';
-export const INCREMENT_LIKES      = 'INCREMENT_LIKES';
 
 function fetchAnimalPending() {
   return {
@@ -20,13 +19,6 @@ function fetchAnimalError(error) {
   return {
     type: FETCH_ANIMAL_ERROR,
     error
-  }
-}
-
-function increment(index) {
-  return {
-    type: INCREMENT_LIKES,
-    index
   }
 }
 
