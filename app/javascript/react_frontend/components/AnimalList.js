@@ -15,14 +15,13 @@ class AnimalList extends React.Component {
        <br />
        <br />
         <div>Multi animals</div>
-        {this.props.animals.map((animal, i) =>
+        {this.props.animals.map((animal) =>
           <AnimalCard
             {...this.props}
-            key={i}
-            i = {i}
+            key={animal.id}
             animal = {animal}
           />
-        )};
+        )}
       </div>
     )
   }
