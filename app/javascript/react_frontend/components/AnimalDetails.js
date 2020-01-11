@@ -10,11 +10,11 @@ const mapStateToProps = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.animalId);
   const animal = state.animals.animals.find(animal => animal.id === id);
   return { animal };
-}
+};
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({fetchAnimal}, dispatch)
-)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({fetchAnimal}, dispatch)
+};
 
 class AnimalDetails extends React.Component {
 
