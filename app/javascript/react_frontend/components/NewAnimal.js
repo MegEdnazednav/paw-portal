@@ -1,78 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { bindActionCreators } from 'redux';
 
 import createAnimal from '../redux/actions/createAnimalActions';
 
 import ImageUploader from './ImageUploader';
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({createAnimal}, dispatch)
+}
+
 class NewAnimal extends React.Component {
 
-  onSubmit = (values) => {
-    this.props.createAnimal(values, (new_animal) => {
-      this.props.history.push('/'); //TODO Refactor
-      return new_animal;
-    });
-  }
+  state = { name: '',
+            age: '',
+            kind: '',
+            description: ''
+          };
 
-  renderField(field) {
-    return (
-      <div className="form-group">
-        <label>{field.label}</label>
-        <input
-          className="form-control"
-          type={field.type}
-          {...field.input}
-        />
-      </div>
-    );
-  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.createAnimal(this.state);
+    this.props.history.push('/')
+  };
 
   render() {
-
     return (
-      <div>
-        <p>Make new animal</p>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-          <Field
-            label="Name"
-            name="name"
-            type="text"
-            component={this.renderField}
-          />
-          <Field
-            label="Age"
-            name="age"
-            type="number"
-            component={this.renderField}
-          />
-          <Field
-            label="Kind"
-            name="kind"
-            type="text"
-            component={this.renderField}
-          />
-          <label htmlFor="content">Description</label>
-          <Field
-            className="form-control"
-            label="Description"
-            name="description"
-            component="textarea"
-            rows="8"
-          />
-          <ImageUploader
-            label="Photos"
-            name="photos"
-          />
-          <button className="btn btn-primary" type="submit" disabled={this.props.pristine || this.props.submitting}>
-            Create Beast
-          </button>
-        </form>
-      </div>
-    )
+      <form onSubmit={this.handleSubmit}>
+        <div>MAKE NEW ANIMAL</div>
+        <input
+          type="text"
+          value={this.state.name}
+          onChange={event => this.setState({ name: event.target.value })}
+          placeholder="Name"
+          required
+        />
+        <input
+          type="number"
+          value={this.state.age}
+          onChange={event => this.setState({ age: event.target.value })}
+          placeholder="Age"
+          required
+        />
+        <select
+          value={this.state.kind}
+          onChange={event => this.setState({ kind: event.target.value })}
+          required>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+        </select>
+        <textarea
+          type="description"
+          value={this.state.description}
+          onChange={event => this.setState({ description: event.target.value })}
+          placeholder="Description"
+          required
+        />
+        <button>CREATE THE BEAST</button>
+      </form>
+    );
   }
 }
 
-export default reduxForm({ form: 'newAnimalForm' })(
-  connect(null, { createAnimal })(NewAnimal)
-);
+export default connect(null, mapDispatchToProps)(NewAnimal);
