@@ -4,6 +4,9 @@ import { FETCH_ANIMALS_PENDING,
 import { FETCH_ANIMAL_PENDING,
          FETCH_ANIMAL_SUCCESS,
          FETCH_ANIMAL_ERROR } from '../actions/fetchAnimalActions';
+import { CREATE_ANIMAL_PENDING,
+         CREATE_ANIMAL_SUCCESS,
+         CREATE_ANIMAL_ERROR } from '../actions/createAnimalActions';
 import { UPDATE_ANIMAL_PENDING,
          UPDATE_ANIMAL_SUCCESS,
          UPDATE_ANIMAL_ERROR } from '../actions/updateAnimalActions';
@@ -45,6 +48,23 @@ export function animals(state = initialState, action) {
       newState.animals = [...filteredAnimals, action.payload]
       return newState;
     case FETCH_ANIMAL_ERROR:
+      return {
+        ...state,
+        pending: false,
+        error: action.error
+      };
+    case CREATE_ANIMAL_PENDING:
+      return {
+        ...state,
+        pending: true
+      };
+    case CREATE_ANIMAL_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        animals: [...state.animals, action.payload]
+      };
+    case CREATE_ANIMAL_ERROR:
       return {
         ...state,
         pending: false,
