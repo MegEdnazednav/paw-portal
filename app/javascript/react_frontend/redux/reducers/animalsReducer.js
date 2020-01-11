@@ -4,6 +4,9 @@ import { FETCH_ANIMALS_PENDING,
 import { FETCH_ANIMAL_PENDING,
          FETCH_ANIMAL_SUCCESS,
          FETCH_ANIMAL_ERROR } from '../actions/fetchAnimalActions';
+import { UPDATE_ANIMAL_PENDING,
+         UPDATE_ANIMAL_SUCCESS,
+         UPDATE_ANIMAL_ERROR } from '../actions/updateAnimalActions';
 import { DELETE_ANIMAL } from '../actions/deleteAnimalActions';
 
 const initialState = {
@@ -42,6 +45,23 @@ export function animals(state = initialState, action) {
       newState.animals = [...filteredAnimals, action.payload]
       return newState;
     case FETCH_ANIMAL_ERROR:
+      return {
+        ...state,
+        pending: false,
+        error: action.error
+      };
+    case UPDATE_ANIMAL_PENDING:
+      return {
+        ...state,
+        pending: true
+      };
+    case UPDATE_ANIMAL_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        items: state.animals.map((animal) => animal.id === action.payload.id ? action.payload : animal)
+      };
+    case UPDATE_ANIMAL_ERROR:
       return {
         ...state,
         pending: false,

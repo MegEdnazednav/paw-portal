@@ -15,7 +15,8 @@ class Api::V1::AnimalsController < ApplicationController
   end
 
   def update
-    @animal = Animal.create(animal_params)
+    @animal = Animal.find(params[:id])
+    @animal.update(animal_params)
     render json: @animal
   end
 
