@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import createAnimal from '../redux/actions/createAnimalActions';
-
 import ImageUploader from './ImageUploader';
 
 const mapDispatchToProps = dispatch => {

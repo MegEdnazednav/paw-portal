@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import fetchAnimal from '../redux/actions/fetchAnimalActions'
-
 import EditAnimal from './EditAnimal'
 
 const mapStateToProps = (state, ownProps) => {
