@@ -34,8 +34,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'faker'
 
-gem 'carrierwave', '~> 2.0'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
