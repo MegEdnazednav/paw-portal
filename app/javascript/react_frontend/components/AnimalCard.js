@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
+import DeleteButton from './Button'
+
 import deleteAnimal from '../redux/actions/deleteAnimalActions'
 
 const mapDispatchToProps = dispatch => (
@@ -10,13 +12,18 @@ const mapDispatchToProps = dispatch => (
 )
 
 class AnimalCard extends React.Component {
+
+  handleClick = () => {
+    this.props.deleteAnimal(this.props.animal.id)
+  }
+
   render() {
-    const { animal, i } = this.props;
     return (
       <div>
-        <button onClick={() => this.props.deleteAnimal(animal.id)} >Delete animal</button>
-        <Link to={`/animals/${animal.id}`}>
-          {animal.name}
+        <DeleteButton click={this.handleClick}
+                      buttonText= "Delete Beast" />
+        <Link to={`/animals/${this.props.animal.id}`}>
+          {this.props.animal.name}
         </Link>
       </div>
     )
