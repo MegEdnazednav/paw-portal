@@ -1,34 +1,51 @@
-class Api::V1::AnimalsController < ApplicationController
-  def index
-    animals = Animal.all
-    render json: animals
-  end
+module Api
+  module V1
+    class AnimalsController < ApplicationController
 
-  def show
-    animal = Animal.find(params[:id])
-    render json: animal
-  end
+      before_action :set_animal, only: [:show, :update, :destroy]
+      def index
+        animals = Animal.all.with_attached_primary_image
+        render json: animals
+      end
 
-  def create
-    @animal = Animal.create(animal_params)
-    render json: @animal
-  end
+      def show
+        render json: @animal
+      end
 
-  def update
-    @animal = Animal.find(params[:id])
-    @animal.update(animal_params)
-    render json: @animal
-  end
+      def create
+        byebug
+        @animal = Animal.create(animal_params)
+        ::Api::V1::UpdateAnimalService.new(@animal, image_params).call
+        render json: @animal
+      end
 
-  def destroy
-    @animal = Animal.find(animal_params[:id])
-    @animal.destroy
-    render json: {}, status: :ok
-  end
+      def update
+        if ::Api::V1::UpdateAnimalService.new(@animal, animal_params).call
+          render json: @animal
+        else
+          render json: @animal.errors, status: :unprocessable_entity
+        end
 
-  private
+      end
 
-  def animal_params
-    params.require(:animal).permit(:id, :name, :age, :kind, :description)
+      def destroy
+        @animal.destroy
+        render json: {}, status: :ok
+      end
+
+      private
+
+      def set_animal
+        @animal = Animal.find(params[:id])
+      end
+
+      def animal_params
+        params.require(:animal).permit(:id, :name, :age, :kind, :description)
+      end
+
+      def image_params
+        params.permit(primary_image: {})
+      end
+    end
   end
 end

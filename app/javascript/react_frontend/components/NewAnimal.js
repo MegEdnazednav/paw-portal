@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import createAnimal from '../redux/actions/createAnimalActions';
 
+import ImageUploader from './ImageUploader'
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({createAnimal}, dispatch)
 }
@@ -13,7 +15,8 @@ class NewAnimal extends React.Component {
   state = { name: '',
             age: '',
             kind: '',
-            description: ''
+            description: '',
+            primary_image: null
           };
 
   handleSubmit = (event) => {
@@ -21,6 +24,10 @@ class NewAnimal extends React.Component {
     this.props.createAnimal(this.state);
     this.props.history.push('/')
   };
+
+  selectImage = image => this.setState({ primary_image: image });
+
+  unselectImage = () => this.setState({ primary_image: '' });
 
   render() {
     return (
@@ -54,6 +61,10 @@ class NewAnimal extends React.Component {
           placeholder="Description"
           required
         />
+        <ImageUploader
+          // image={editableRecipe.image}
+          selectImage={this.selectImage}
+          unselectImage={this.unselectImage} />
         <button>CREATE THE BEAST</button>
       </form>
     );
