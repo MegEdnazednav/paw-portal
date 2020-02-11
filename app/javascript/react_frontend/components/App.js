@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import fetchAnimals from '../redux/actions/fetchAnimalsActions'
 
 import AnimalList from './AnimalList'
+import MainForm from './wizard_form/MainForm'
 
 const mapStateToProps = state => {
   return { animals: state.animals.animals };
@@ -23,6 +24,7 @@ class App extends React.Component {
     return (
       <div>
         <AnimalList animals={this.props.animals} />
+        <MainForm />
       </div>
     )
   }
