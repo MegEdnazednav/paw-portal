@@ -1,6 +1,6 @@
 class Api::V1::AnimalsController < ApplicationController
   def index
-    animals = Animal.all
+    animals = Animal.filter(params.slice(:gender, :outside, :height))
     render json: animals
   end
 
@@ -29,6 +29,14 @@ class Api::V1::AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:id, :name, :age, :kind, :description)
+    params.require(:animal).permit(
+      :id,
+      :name,
+      :age,
+      :kind,
+      :description,
+      :height,
+      :outside,
+      :gender)
   end
 end
