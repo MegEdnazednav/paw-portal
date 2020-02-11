@@ -13,8 +13,8 @@ class Step2 extends React.Component {
             <input
               type="radio"
               name="outside"
-              value="a garden"
-              defaultChecked={this.props.outside === 'a garden'}
+              value="garden"
+              defaultChecked={this.props.outside === 'garden'}
               onChange={this.props.handleChange} />
             I have a garden
           </label>
@@ -24,8 +24,8 @@ class Step2 extends React.Component {
             <input
               type="radio"
               name="outside"
-              value="a terrace"
-              defaultChecked={this.props.outside === 'a terrace'}
+              value="terrace"
+              defaultChecked={this.props.outside === 'terrace'}
               onChange={this.props.handleChange} />
             I have a terrace
           </label>
@@ -35,8 +35,8 @@ class Step2 extends React.Component {
             <input
               type="radio"
               name="outside"
-              value="no outside space"
-              defaultChecked={this.props.outside === 'no outside space'}
+              value="none"
+              defaultChecked={this.props.outside === 'none'}
               onChange={this.props.handleChange} />
             I don't have any outside space
           </label>

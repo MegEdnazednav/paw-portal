@@ -22,6 +22,7 @@ class AnimalList extends React.Component {
             animal = {animal}
           />
         )}
+        {this.props.backButton}
       </div>
     )
   }

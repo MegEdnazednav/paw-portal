@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2020_01_19_153719) do
     t.integer "age", default: 0
     t.text "description", default: ""
     t.string "title", default: ""
+    t.string "gender", default: ""
+    t.string "outside", default: ""
+    t.string "height", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
