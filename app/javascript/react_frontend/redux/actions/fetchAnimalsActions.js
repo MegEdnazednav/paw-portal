@@ -22,11 +22,15 @@ function fetchAnimalsError(error) {
   }
 }
 
-function fetchAnimals() {
+function fetchAnimals(params) {
   return async dispatch => {
     dispatch(fetchAnimalsPending());
     try {
-      const result = await fetch('/api/v1/animals');
+      const query = []
+      for (let [key, value] of Object.entries(params)) {
+        query.push(`${key}=${value}`);
+      }
+      const result = await fetch(`/api/v1/animals?${query.join('&')}`);
       const animals = await result.json();
       dispatch(fetchAnimalsSuccess(animals));
     }
@@ -35,7 +39,5 @@ function fetchAnimals() {
     }
   }
 }
-
-
 
 export default fetchAnimals;

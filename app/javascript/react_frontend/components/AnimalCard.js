@@ -24,6 +24,10 @@ class AnimalCard extends React.Component {
                       buttonText= "Delete Beast" />
         <Link to={`/animals/${this.props.animal.id}`}>
           {this.props.animal.name}
+          {this.props.animal.age} -
+          {this.props.animal.outside} -
+          {this.props.animal.gender} -
+          {this.props.animal.height} -
         </Link>
       </div>
     )

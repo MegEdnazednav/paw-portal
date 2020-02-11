@@ -7,14 +7,14 @@ class Step1 extends React.Component {
     }
     return(
       <div className="form-group">
-        <label htmlFor="size">What size of dog are you looking for?</label>
+        <label htmlFor="height">What size of dog are you looking for?</label>
         <div className="radio">
           <label>
             <input
               type="radio"
-              name="size"
+              name="height"
               value="big"
-              defaultChecked={this.props.size === 'big'}
+              defaultChecked={this.props.height === 'big'}
               onChange={this.props.handleChange} />
             Big dog
           </label>
@@ -23,9 +23,9 @@ class Step1 extends React.Component {
           <label>
             <input
               type="radio"
-              name="size"
-              value="medium size"
-              defaultChecked={this.props.size === 'medium size'}
+              name="height"
+              value="medium"
+              defaultChecked={this.props.height === 'medium'}
               onChange={this.props.handleChange} />
             Medium size dog
           </label>
@@ -34,9 +34,9 @@ class Step1 extends React.Component {
           <label>
             <input
               type="radio"
-              name="size"
+              name="height"
               value="small"
-              defaultChecked={this.props.size === 'small'}
+              defaultChecked={this.props.height === 'small'}
               onChange={this.props.handleChange} />
             Small dog
           </label>
