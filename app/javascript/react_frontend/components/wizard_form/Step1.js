@@ -1,4 +1,7 @@
 import React from 'react';
+import bigDog from '../../images/big_dog.png'
+import mediumDog from '../../images/medium_dog.png'
+import smallDog from '../../images/small_dog.png'
 
 class Step1 extends React.Component {
   render() {
@@ -16,7 +19,8 @@ class Step1 extends React.Component {
               value="big"
               defaultChecked={this.props.height === 'big'}
               onChange={this.props.handleChange} />
-            Big dog
+            <img src={bigDog} alt="Big dog" />
+            <span>Big dog</span>
           </label>
         </div>
         <div className="radio">
@@ -27,7 +31,8 @@ class Step1 extends React.Component {
               value="medium"
               defaultChecked={this.props.height === 'medium'}
               onChange={this.props.handleChange} />
-            Medium size dog
+            <img src={mediumDog} alt="Medium dog" />
+            <span>Medium size dog</span>
           </label>
         </div>
         <div className="radio">
@@ -38,7 +43,8 @@ class Step1 extends React.Component {
               value="small"
               defaultChecked={this.props.height === 'small'}
               onChange={this.props.handleChange} />
-            Small dog
+            <img src={smallDog} alt="Small dog" />
+            <span>Small dog</span>
           </label>
         </div>
       </div>
