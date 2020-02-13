@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Louis George Café";
+  src: url("../fonts/Louis_George_Cafe.eot?") format("eot"),
+       url("../fonts/Louis_George_Cafe.woff") format("woff"),
+       url("../fonts/Louis_George_Cafe.ttf") format("truetype"),
+       url("../fonts/Louis_George_Cafe.svg#LouisGeorgeCafe") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Louis George Café", sans-serif;
+}
+
+.flexbox {
+  display: flex;
+}

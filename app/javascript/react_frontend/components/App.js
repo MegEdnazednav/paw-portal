@@ -1,131 +1,26 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import fetchAnimals from '../redux/actions/fetchAnimalsActions'
+import { Router, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import store, { history } from '../store';
 
-import AnimalList from './AnimalList'
-import MainForm from './wizard_form/MainForm'
+import Landing from './Landing';
+import AnimalList from './AnimalList';
+import NewAnimal from './NewAnimal';
+import AnimalDetails from './AnimalDetails';
 
-const mapStateToProps = state => {
-  return { animals: state.animals.animals };
-}
+import './App.scss'
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({fetchAnimals}, dispatch)
+const App = (
+  <Provider store={store}>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/animals/new" exact component={NewAnimal} />
+        <Route path="/animals/:animalId" component={AnimalDetails} />
+        <Route path="/animals" component={AnimalList} />
+      </Switch>
+    </Router>
+  </Provider>
 )
 
-class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.initialState = {
-      animals: '',
-      currentStep: 1,
-      height:  '',
-      outside: '',
-      gender: '',
-      afterSelection: false
-    };
-    this.state = this.initialState;
-  };
-
-  handleChange = event => {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })
-    this._next()
-  }
-
-  handleSubmit = event => {
-    event.preventDefault()
-    this.setState({afterSelection: true})
-    this.props.fetchAnimals(this.state);
-  }
-
-  _next = () => {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep >= 2? 3: currentStep + 1
-    this.setState({
-      currentStep: currentStep
-    })
-  }
-
-  _prev = () => {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep <= 1? 1: currentStep - 1
-    this.setState({
-      currentStep: currentStep
-    })
-  }
-
-  _back = () => {
-    this.setState(this.initialState);
-  }
-
-  previousButton() {
-    let currentStep = this.state.currentStep;
-    if(currentStep !==1){
-      return (
-        <button
-          className="btn btn-secondary"
-          type="button" onClick={this._prev}>
-        Previous
-        </button>
-      )
-    }
-    return null;
-  }
-
-  nextButton(){
-    let currentStep = this.state.currentStep;
-    if(currentStep <3){
-      return (
-        <button
-          className="btn btn-primary float-right"
-          type="button" onClick={this._next}>
-        Next
-        </button>
-      )
-    }
-    return null;
-  }
-
-  backButton(){
-    return (
-      <button
-        className="btn btn-primary float-right"
-        type="button" onClick={this._back}>
-        Back to Search
-      </button>
-    )
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.afterSelection &&
-          <AnimalList
-            animals={this.props.animals}
-            backButton={this.backButton()}
-           />
-        }
-        {!this.state.afterSelection &&
-          <MainForm
-            currentStep={this.state.currentStep}
-            height= {this.state.height}
-            outside= {this.state.outside}
-            gender= {this.state.gender}
-            handleChange= {this.handleChange}
-            handleSubmit= {this.handleSubmit}
-            previousButton={this.previousButton()}
-            nextButton={this.nextButton()}
-          />
-        }
-      </div>
-    )
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
+export default App;

@@ -1,11 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
+import fetchAnimals from '../redux/actions/fetchAnimalsActions'
+
 import AnimalCard from './AnimalCard'
 
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({fetchAnimals}, dispatch)
+)
+
+const mapStateToProps = state => {
+  return { animals: state.animals.animals };
+}
+
 class AnimalList extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchAnimals(this.state);
+  }
 
   render() {
     return (
@@ -22,10 +38,9 @@ class AnimalList extends React.Component {
             animal = {animal}
           />
         )}
-        {this.props.backButton}
       </div>
     )
   }
 }
 
-export default AnimalList;
+export default connect(mapStateToProps, mapDispatchToProps)(AnimalList);

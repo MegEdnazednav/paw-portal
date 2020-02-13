@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Wizard.scss'
+
 class Step3 extends React.Component {
   render() {
     if (this.props.currentStep !== 3) {

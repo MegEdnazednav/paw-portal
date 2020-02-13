@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'animals/:id', to: 'animals#index'
 
-  resources :animals, except: :index
+  resources :animals, only: :index
 
   namespace :api do
     namespace :v1 do
