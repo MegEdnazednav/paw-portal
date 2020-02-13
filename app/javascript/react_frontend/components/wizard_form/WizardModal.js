@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 
 import MainForm from './MainForm'
 
+import Fab from '@material-ui/core/Fab';
+import logo from '../../images/logo.png'
+
 import './Wizard.scss'
 
 class WizardModal extends Component {
@@ -41,6 +44,14 @@ class WizardModal extends Component {
     })
   }
 
+  handleChange = event => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+    this._next()
+  }
+
   previousButton() {
     let currentStep = this.state.currentStep;
     if(currentStep !==1){
@@ -73,20 +84,17 @@ class WizardModal extends Component {
     return (
       <div>
         <MainForm
-          currentStep=    {this.state.currentStep}
-          height=         {this.state.height}
-          outside=        {this.state.outside}
-          gender=         {this.state.gender}
-          handleChange=   {this.handleChange}
-          handleSubmit=   {this.handleSubmit}
-          previousButton= {this.previousButton()}
-          nextButton=     {this.nextButton()}
-          handleClose=    {this.hideModal}
-          show=           {this.state.show}
+          state          = {this.state}
+          handleChange   = {this.handleChange}
+          handleSubmit   = {this.handleSubmit}
+          previousButton = {this.previousButton()}
+          nextButton     = {this.nextButton()}
+          handleClose    = {this.hideModal}
         />
-        <button type="button" onClick={this.showModal}>
-          open
-        </button>
+        <Fab variant="extended" aria-label="add" onClick={this.showModal} className="fab-button1-landing" >
+          <img src={logo} alt="Logo" className="logo-main" />
+          Find your dog
+        </Fab>
       </div>
     );
   }

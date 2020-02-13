@@ -20,7 +20,7 @@ const mapStateToProps = state => {
 class AnimalList extends React.Component {
 
   componentDidMount() {
-    this.props.fetchAnimals(this.state);
+    this.props.fetchAnimals(this.props.location.state);
   }
 
   render() {

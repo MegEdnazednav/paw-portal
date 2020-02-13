@@ -27,7 +27,7 @@ function fetchAnimals(params) {
     dispatch(fetchAnimalsPending());
     try {
       const query = []
-      if (params !==null) {
+      if (params) {
         for (let [key, value] of Object.entries(params)) {
           query.push(`${key}=${value}`);
         }

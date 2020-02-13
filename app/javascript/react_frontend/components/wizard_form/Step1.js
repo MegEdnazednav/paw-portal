@@ -23,7 +23,7 @@ class Step1 extends React.Component {
                 value="big"
                 defaultChecked={this.props.height === 'big'}
                 onChange={this.props.handleChange} />
-              <img src={bigDog} alt="Big dog" />
+              <img src={bigDog} alt="Big dog" className="radio-dog" />
               <span>Big dog</span>
             </label>
           </div>
@@ -36,7 +36,7 @@ class Step1 extends React.Component {
                 value="medium"
                 defaultChecked={this.props.height === 'medium'}
                 onChange={this.props.handleChange} />
-              <img src={mediumDog} alt="Medium dog" />
+              <img src={mediumDog} alt="Medium dog" className="radio-dog"/>
               <span>Medium size dog</span>
             </label>
           </div>
@@ -49,7 +49,7 @@ class Step1 extends React.Component {
                 value="small"
                 defaultChecked={this.props.height === 'small'}
                 onChange={this.props.handleChange} />
-              <img src={smallDog} alt="Small dog" />
+              <img src={smallDog} alt="Small dog" className="radio-dog"/>
               <span>Small dog</span>
             </label>
           </div>
