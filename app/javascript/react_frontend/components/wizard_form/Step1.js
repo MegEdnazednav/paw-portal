@@ -1,4 +1,9 @@
 import React from 'react';
+import bigDog from '../../images/big_dog.png'
+import mediumDog from '../../images/medium_dog.png'
+import smallDog from '../../images/small_dog.png'
+
+import './Wizard.scss'
 
 class Step1 extends React.Component {
   render() {
@@ -8,38 +13,46 @@ class Step1 extends React.Component {
     return(
       <div className="form-group">
         <label htmlFor="height">What size of dog are you looking for?</label>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              name="height"
-              value="big"
-              defaultChecked={this.props.height === 'big'}
-              onChange={this.props.handleChange} />
-            Big dog
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              name="height"
-              value="medium"
-              defaultChecked={this.props.height === 'medium'}
-              onChange={this.props.handleChange} />
-            Medium size dog
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              name="height"
-              value="small"
-              defaultChecked={this.props.height === 'small'}
-              onChange={this.props.handleChange} />
-            Small dog
-          </label>
+        <div className="flexbox">
+          <div className="radio">
+            <label>
+              <input
+                className="radio-tick"
+                type="radio"
+                name="height"
+                value="big"
+                defaultChecked={this.props.height === 'big'}
+                onChange={this.props.handleChange} />
+              <img src={bigDog} alt="Big dog" className="radio-dog" />
+              <span>Big dog</span>
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                className="radio-tick"
+                type="radio"
+                name="height"
+                value="medium"
+                defaultChecked={this.props.height === 'medium'}
+                onChange={this.props.handleChange} />
+              <img src={mediumDog} alt="Medium dog" className="radio-dog"/>
+              <span>Medium size dog</span>
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                className="radio-tick"
+                type="radio"
+                name="height"
+                value="small"
+                defaultChecked={this.props.height === 'small'}
+                onChange={this.props.handleChange} />
+              <img src={smallDog} alt="Small dog" className="radio-dog"/>
+              <span>Small dog</span>
+            </label>
+          </div>
         </div>
       </div>
     )

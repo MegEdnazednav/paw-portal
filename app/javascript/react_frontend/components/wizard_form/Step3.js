@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
+
+import './Wizard.scss'
+
 class Step3 extends React.Component {
   render() {
     if (this.props.currentStep !== 3) {
@@ -30,7 +34,11 @@ class Step3 extends React.Component {
             Female
           </label>
         </div>
-        <button className="btn btn-success btn-block">GET DOGS</button>
+        <Link to ={{
+            pathname: "/animals",
+            state: this.props.state
+           }} > GET DOGS </Link>
+
       </div>
     )
   }

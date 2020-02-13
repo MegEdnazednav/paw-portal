@@ -1,0 +1,26 @@
+.nav {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-logo {
+  width: 120px;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+  padding-top: 30px;
+}
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+img.logo-main {
+  width: 150px;
+}
